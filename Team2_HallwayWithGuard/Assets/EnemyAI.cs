@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
     public float followSpeed = 2f;
 
     private Transform player;
-    private bool isFollowing = false;
+    [SerializeField] public bool isFollowing = false;
 
     void Start()
     {
