@@ -4,27 +4,25 @@ public class HayHiding : MonoBehaviour
 {
     public GameObject ufo;
     private EnemyAI enemyai;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-        
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
-    }
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            enemyai = ufo.GetComponent<EnemyAI>();
-            Debug.Log("Player entered the trigger zone!");
-            EnemyAI.isFollowing = false;
+            FPSController controller = other.GetComponent<FPSController>();
+            if (controller != null)
+                controller.isHidden = true;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            FPSController controller = other.GetComponent<FPSController>();
+            if (controller != null)
+                controller.isHidden = false;
+        }
+    }
+
 }

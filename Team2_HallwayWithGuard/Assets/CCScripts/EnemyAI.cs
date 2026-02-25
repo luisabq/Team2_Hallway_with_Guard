@@ -17,6 +17,15 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        //checking if player is hidden or not
+        FPSController controller = player.GetComponent<FPSController>();
+        if (controller != null && controller.isHidden)
+        {
+            isFollowing = false;
+            return; 
+        }
+
+
         float distance = Vector3.Distance(transform.position, player.position);
 
         if (distance <= followRange)
@@ -36,8 +45,10 @@ public class EnemyAI : MonoBehaviour
 
         void FollowPlayer()
         {
-            Vector3 direction = (player.position - transform.position).normalized;
-            transform.position += (Vector3)direction * followSpeed * Time.deltaTime;
+            Vector3 targetPosition = player.position;
+            targetPosition.y = transform.position.y;
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            transform.position += direction * followSpeed * Time.deltaTime;
         }
     }
 }
