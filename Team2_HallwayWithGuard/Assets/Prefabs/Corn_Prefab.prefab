@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7593245826276574813}
   - component: {fileID: 7081981369771473961}
-  - component: {fileID: 1066592847940250122}
   m_Layer: 0
   m_Name: Corn_Prefab
   m_TagString: Untagged
@@ -51,30 +50,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.5449912, y: 2.6001794, z: 0.2525835}
   m_Center: {x: -0.006611675, y: 0.8000897, z: 0.009527486}
---- !u!114 &1066592847940250122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 927624174233525130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifier
-  m_SerializedVersion: 0
-  m_OverrideArea: 1
-  m_Area: 0
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 0
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1001 &6868835136818666488
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -45840,6 +45840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corn_Blockout_Prefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7081981369771473961, guid: 2994015587644534b9397a8559734cdf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7593245826276574813, guid: 2994015587644534b9397a8559734cdf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.577461
