@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Inventory : MonoBehaviour
 {
@@ -24,15 +25,7 @@ public class Inventory : MonoBehaviour
     {
         if (hasKey)
         {
-
-            winText.SetActive(true);
-
-            //Debug.Log("opened!!");
-
-        }
-        else
-        {
-            Debug.Log("locked!");
+            SceneManager.LoadScene("winScreen");
         }
     }
 
