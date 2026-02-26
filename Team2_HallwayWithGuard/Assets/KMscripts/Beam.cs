@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Beam : MonoBehaviour
 {
@@ -54,17 +55,6 @@ public class Beam : MonoBehaviour
 
     void Lose()
     {
-
-        loseText.SetActive(true);
-
-    }
-
-
-    void Start()
-    {
-
-        loseText.SetActive(false);
-    }
-
-    
+        SceneManager.LoadScene("loseScreen");
+    }    
 }
