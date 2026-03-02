@@ -66,6 +66,7 @@ public class UFOController : MonoBehaviour
             isChasing = false;
             searching = true;
             searchTimer = 0f;
+            lastKnownPosition = player.transform.position;
         }
 
         if (isChasing)

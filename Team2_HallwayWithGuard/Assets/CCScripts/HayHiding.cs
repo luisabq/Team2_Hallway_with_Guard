@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class HayHiding : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip hideSound;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -11,6 +14,8 @@ public class HayHiding : MonoBehaviour
             {
                 controller.isHidden = true;
                 Debug.Log("Player hiding");
+
+                PlaySound();
             }
         }
     }
@@ -25,6 +30,14 @@ public class HayHiding : MonoBehaviour
                 controller.isHidden = false;
                 Debug.Log("Player revealed");
             }
+        }
+    }
+
+    private void PlaySound()
+    {
+        if (audioSource != null && hideSound != null)
+        {
+            audioSource.PlayOneShot(hideSound);
         }
     }
 }

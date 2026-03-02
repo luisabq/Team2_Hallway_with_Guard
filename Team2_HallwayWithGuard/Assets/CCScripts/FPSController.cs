@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FPSController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class FPSController : MonoBehaviour
     //movement speed
     [SerializeField] private float walkSpeed = 3.0f;
     [SerializeField] private float sprintMultiplier = 2.0f;
+
     //input config
     [SerializeField] private string horizontalMoveInput = "Horizontal";
     [SerializeField] private string verticalMoveInput = "Vertical";
@@ -24,13 +26,38 @@ public class FPSController : MonoBehaviour
     [SerializeField] private string controllerLookY = "RightStickY";
     [SerializeField] private float controllerSensitivity = 100f;
 
+    //Audio
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] staminaSounds;
+    [SerializeField] private AudioClip[] footstepClips;
+    [SerializeField] private AudioClip sprintLoopClip;
+   
+
+
+   
+
+    //[SerializeField] private float sprintSoundCooldown = 5.9f;
+    private bool wasSprinting = false;
+    //private float lastSprintSoundTime = -999f;
+
+
+    private float footstepTimer = 0f;
+    private float footstepInterval = 0.5f;
 
     public bool isHidden = false;
     private Camera mainCamera;
     private float verticalRotation;
-    private CharacterController characterController; 
+    private CharacterController characterController;
 
-        private void Start()
+
+    public Image StaminaBar;
+    public float Stamina, MaxStamina;
+    public float RunCost;
+    public float ChargeRate;
+    private Coroutine recharge;
+
+
+    private void Start()
     {
         characterController = GetComponent<CharacterController>();
         mainCamera = GetComponentInChildren<Camera>();
@@ -39,23 +66,79 @@ public class FPSController : MonoBehaviour
     }
     private void Update()
     {
+
         HandleMovement();
         HandleRotation();
+        bool isSprintPressed = Input.GetKey(sprintKey) || Input.GetKey(controllerSprintKey);
+        bool isSprinting = Stamina > 0 && isSprintPressed;
+
+        if (isSprinting && !wasSprinting)
+        {
+            PlayRandomStaminaSound();
+        }
+
+        wasSprinting = isSprinting;
+
+
     }
 
     void HandleMovement()
     {
         bool isSprinting = Input.GetKey(sprintKey) || Input.GetKey(controllerSprintKey);
+        if (Stamina <= 0)
+        {
+            isSprinting = false;
+        }
+
+        if (isSprinting)
+        {
+            if (sprintLoopClip != null && audioSource.clip != sprintLoopClip)
+            {
+                audioSource.clip = sprintLoopClip;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            if (audioSource.clip == sprintLoopClip)
+            {
+                audioSource.Stop();
+                audioSource.loop = false;
+                audioSource.clip = null;
+            }
+        }
+
+
         float speedMultiplier = isSprinting ? sprintMultiplier : 1f;
         float verticalSpeed = Input.GetAxis(verticalMoveInput) * walkSpeed * speedMultiplier;
         float horizontalSpeed = Input.GetAxis(horizontalMoveInput) * walkSpeed * speedMultiplier;
 
-        Vector3 speed = new Vector3 (horizontalSpeed, 0, verticalSpeed);
+
+
+
+        Vector3 speed = new Vector3(horizontalSpeed, 0, verticalSpeed);
         speed = transform.rotation * speed;
 
-        characterController.SimpleMove(speed); 
+        characterController.SimpleMove(speed);
+
+        if (isSprinting)
+        {
+            Stamina -= RunCost * Time.deltaTime;
+            if (Stamina < 0) Stamina = 0;
+            StaminaBar.fillAmount = Stamina / MaxStamina;
+
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
+
+        }
+
+        float moveMagnitude = characterController.velocity.magnitude;
+        HandleFootsteps(characterController.velocity.magnitude);
+
+
     }
-     void HandleRotation()
+    void HandleRotation()
     {
         float mouseX = Input.GetAxis(MouseXInput) * mouseSensitivity;
         float mouseY = Input.GetAxis(MouseYInput) * mouseSensitivity;
@@ -72,4 +155,85 @@ public class FPSController : MonoBehaviour
 
 
     }
+
+
+    private IEnumerator RechargeStamina()
+    {
+        yield return new WaitForSeconds(1f);
+
+        while (Stamina < MaxStamina)
+        {
+            Stamina += ChargeRate / 10f;
+            if (Stamina > MaxStamina) Stamina = MaxStamina;
+            StaminaBar.fillAmount = Stamina / MaxStamina;
+            yield return new WaitForSeconds(.1f);
+        }
+
+
+    }
+
+    //bool CanPlaySprintSound()
+    // {
+    // if (Time.time < lastSprintSoundTime + sprintSoundCooldown)
+    //    return false;
+
+    // lastSprintSoundTime = Time.time;
+    //  return true;
+    //  }
+
+    void PlayRandomStaminaSound()
+    {
+
+        if (staminaSounds.Length == 0) return;
+
+        int randomIndex = Random.Range(0, staminaSounds.Length);
+
+        AudioSource tempSource = gameObject.AddComponent<AudioSource>();
+        tempSource.clip = staminaSounds[randomIndex];
+        tempSource.pitch = Random.Range(0.85f, 1.15f);
+        tempSource.spatialBlend = audioSource.spatialBlend;
+        tempSource.volume = audioSource.volume;
+
+        tempSource.Play();
+        Destroy(tempSource, tempSource.clip.length);
+
+    }
+
+    void HandleFootsteps(float speed)
+    {
+        if (footstepClips.Length == 0) return;
+
+        if (speed > 0.2f)
+        {
+            footstepTimer -= Time.deltaTime;
+
+            if (footstepTimer <= 0f)
+            {
+                PlayRandomFootstep();
+                footstepTimer = footstepInterval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
+    }
+
+
+
+    void PlayRandomFootstep()
+    {
+        if (footstepClips.Length == 0) return;
+
+        audioSource.clip = footstepClips[0];
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.time = Random.Range(0f, audioSource.clip.length);
+        audioSource.Play();
+    }
+
 }
