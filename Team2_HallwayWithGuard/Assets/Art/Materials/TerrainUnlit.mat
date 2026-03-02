@@ -62,9 +62,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Dirt_Normal_End: 0.808
+    - _Dirt_Normal_Start: 0.521
     - _Lighting_Cutoff: 0
+    - _Normal_End: 1
+    - _Normal_Start: 0.502
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Rock_Normal_End: 1
+    - _Rock_Normal_Start: 0.6
     - _Shadow_Brightness: 0.5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
