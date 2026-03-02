@@ -29,11 +29,20 @@ public class FPSController : MonoBehaviour
     //Audio
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] staminaSounds;
-    //[SerializeField] private float sprintSoundCooldown = 5.9f;
+    [SerializeField] private AudioClip[] footstepClips;
+    [SerializeField] private AudioClip sprintLoopClip;
+   
 
+
+   
+
+    //[SerializeField] private float sprintSoundCooldown = 5.9f;
     private bool wasSprinting = false;
     //private float lastSprintSoundTime = -999f;
 
+
+    private float footstepTimer = 0f;
+    private float footstepInterval = 0.5f;
 
     public bool isHidden = false;
     private Camera mainCamera;
@@ -80,6 +89,27 @@ public class FPSController : MonoBehaviour
         {
             isSprinting = false;
         }
+
+        if (isSprinting)
+        {
+            if (sprintLoopClip != null && audioSource.clip != sprintLoopClip)
+            {
+                audioSource.clip = sprintLoopClip;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            if (audioSource.clip == sprintLoopClip)
+            {
+                audioSource.Stop();
+                audioSource.loop = false;
+                audioSource.clip = null;
+            }
+        }
+
+
         float speedMultiplier = isSprinting ? sprintMultiplier : 1f;
         float verticalSpeed = Input.GetAxis(verticalMoveInput) * walkSpeed * speedMultiplier;
         float horizontalSpeed = Input.GetAxis(horizontalMoveInput) * walkSpeed * speedMultiplier;
@@ -103,6 +133,8 @@ public class FPSController : MonoBehaviour
 
         }
 
+        float moveMagnitude = characterController.velocity.magnitude;
+        HandleFootsteps(characterController.velocity.magnitude);
 
 
     }
@@ -165,6 +197,43 @@ public class FPSController : MonoBehaviour
         tempSource.Play();
         Destroy(tempSource, tempSource.clip.length);
 
+    }
+
+    void HandleFootsteps(float speed)
+    {
+        if (footstepClips.Length == 0) return;
+
+        if (speed > 0.2f)
+        {
+            footstepTimer -= Time.deltaTime;
+
+            if (footstepTimer <= 0f)
+            {
+                PlayRandomFootstep();
+                footstepTimer = footstepInterval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
+    }
+
+
+
+    void PlayRandomFootstep()
+    {
+        if (footstepClips.Length == 0) return;
+
+        audioSource.clip = footstepClips[0];
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.time = Random.Range(0f, audioSource.clip.length);
+        audioSource.Play();
     }
 
 }
