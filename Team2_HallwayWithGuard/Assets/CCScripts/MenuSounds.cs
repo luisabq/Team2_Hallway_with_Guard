@@ -15,6 +15,8 @@ public class MenuSounds : MonoBehaviour
 
     [SerializeField] private float delay = 0.3f;
 
+    //public Animator transition;
+
     public void Execute()
     {
         StartCoroutine(DoAction());
@@ -24,7 +26,9 @@ public class MenuSounds : MonoBehaviour
     {
         if (audioSource && clickSound)
         {
+
             audioSource.PlayOneShot(clickSound);
+           // transition.SetTrigger("Start");
             yield return new WaitForSeconds(clickSound.length);
         }
         else
