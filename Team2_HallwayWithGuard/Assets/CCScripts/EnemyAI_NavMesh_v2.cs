@@ -23,6 +23,13 @@ public class UFOController : MonoBehaviour
     [Header("Zap SFX")]
     public AudioSource zapSource;
 
+    [Header("Chase Music")]
+    public AudioSource chaseMusic;
+    public float chaseVolume = 1f;
+    public float fadeSpeed = 2f;
+
+    private bool chaseMusicStarted = false;
+
     [Header("TP Charge")]
     public float teleportChargeTime = 0.5f;
 
@@ -63,6 +70,11 @@ public class UFOController : MonoBehaviour
         // team, this is when player is visible and in range
         if (!playerController.isHidden && distance <= followRange)
         {
+            if (!isChasing)
+            {
+                StartChaseMusic(); 
+            }
+
             isChasing = true;
             searching = false;
             lastKnownPosition = player.position;
@@ -90,6 +102,9 @@ public class UFOController : MonoBehaviour
             Patrol();
             HandleZap();
         }
+
+        HandleChaseMusic();
+
     }
 
     void Patrol()
@@ -213,4 +228,29 @@ public class UFOController : MonoBehaviour
             agent.SetDestination(hit.position);
         }
     }
+
+    void StartChaseMusic()
+    {
+        if (chaseMusic == null) return;
+
+        if (!chaseMusicStarted)
+        {
+            chaseMusic.Play();
+            chaseMusicStarted = true;
+        }
+    }
+
+    void HandleChaseMusic()
+    {
+        if (chaseMusic == null || !chaseMusicStarted) return;
+
+        float targetVolume = isChasing ? chaseVolume : 0f;
+
+        chaseMusic.volume = Mathf.MoveTowards(
+            chaseMusic.volume,
+            targetVolume,
+            fadeSpeed * Time.deltaTime
+        );
+    }
+
 }
