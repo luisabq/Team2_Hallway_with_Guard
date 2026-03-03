@@ -26,6 +26,8 @@ public class UFOController : MonoBehaviour
     [Header("TP Charge")]
     public float teleportChargeTime = 0.5f;
 
+    public ParticleSystem zapParticles;
+
     private NavMeshAgent agent;
     private Transform player;
     private FPSController playerController;
@@ -155,6 +157,10 @@ public class UFOController : MonoBehaviour
         // UFO should stop
         agent.isStopped = true;
         agent.velocity = Vector3.zero;
+
+        // play zap particles immediately
+        if (zapParticles != null)
+            zapParticles.Play();
 
         // Zap SFX plays immediately
         if (zapSource != null)
