@@ -1,23 +1,30 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class UFOController : MonoBehaviour
 {
-    [Header("Areas")]
+    [Header("Patrol Zones")]
     public Transform area2Center;
     public Transform area3Center;
 
-    [Header("Movement Settings")]
+    [Header("Movement")]
     public float roamRadius = 25f;
     public float patrolSpeed = 3f;
     public float followSpeed = 6f;
     public float followRange = 12f;
 
-    [Header("Search Settings")]
+    [Header("Search")]
     public float searchDuration = 3f;
 
-    [Header("Teleport Settings")]
+    [Header("TP")]
     public float zapCooldown = 15f;
+
+    [Header("Zap SFX")]
+    public AudioSource zapSource;
+
+    [Header("TP Charge")]
+    public float teleportChargeTime = 0.5f;
 
     private NavMeshAgent agent;
     private Transform player;
@@ -30,6 +37,7 @@ public class UFOController : MonoBehaviour
 
     private bool isChasing = false;
     private bool searching = false;
+    private bool isTeleporting = false;
 
     private Vector3 lastKnownPosition;
 
@@ -127,16 +135,44 @@ public class UFOController : MonoBehaviour
 
     void HandleZap()
     {
+        if (isTeleporting) return;
+
         zapTimer += Time.deltaTime;
 
         if (zapTimer >= zapCooldown)
         {
-            Zap();
+            StartCoroutine(TeleportSequence());
             zapTimer = 0f;
         }
     }
 
-    void Zap()
+    IEnumerator TeleportSequence()
+    {
+        if (isTeleporting) yield break;
+
+        isTeleporting = true;
+
+        // UFO should stop
+        agent.isStopped = true;
+        agent.velocity = Vector3.zero;
+
+        // Zap SFX plays immediately
+        if (zapSource != null)
+            zapSource.Play();
+
+        // wait for the charge time before tp
+        yield return new WaitForSeconds(teleportChargeTime);
+
+        // NOW you can tp
+        PerformZap();
+
+        // Resume patrol
+        agent.isStopped = false;
+
+        isTeleporting = false;
+    }
+
+    void PerformZap()
     {
         if (currentAreaCenter == area2Center)
             currentAreaCenter = area3Center;
@@ -144,12 +180,23 @@ public class UFOController : MonoBehaviour
             currentAreaCenter = area2Center;
 
         Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
-        randomDirection += currentAreaCenter.position;
+        randomDirection.y = 0f;
+
+        Vector3 targetPosition = currentAreaCenter.position + randomDirection;
 
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, roamRadius, NavMesh.AllAreas))
+
+        if (NavMesh.SamplePosition(targetPosition, out hit, roamRadius, NavMesh.AllAreas))
         {
+            agent.ResetPath();
             agent.Warp(hit.position);
+            agent.ResetPath();
+        }
+        else
+        {
+            agent.ResetPath();
+            agent.Warp(currentAreaCenter.position);
+            agent.ResetPath();
         }
 
         GoToRandomPoint();
