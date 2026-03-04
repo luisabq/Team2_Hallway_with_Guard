@@ -42,7 +42,7 @@ public class MenuSounds : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(sceneToLoad);
+            LevelLoader.Instance.LoadScene(sceneToLoad);
         }
     }
 

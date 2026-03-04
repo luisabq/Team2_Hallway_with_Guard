@@ -280,7 +280,6 @@ MonoBehaviour:
   sceneToLoad: 
   quitGame: 1
   delay: 1
-  transition: {fileID: 0}
 --- !u!4 &205129074
 Transform:
   m_ObjectHideFlags: 0
@@ -638,7 +637,6 @@ MonoBehaviour:
   sceneToLoad: mainScreen
   quitGame: 0
   delay: 1
-  transition: {fileID: 0}
 --- !u!4 &636119244
 Transform:
   m_ObjectHideFlags: 0
@@ -955,7 +953,6 @@ MonoBehaviour:
   sceneToLoad: mainScreen
   quitGame: 0
   delay: 1
-  transition: {fileID: 1375706879}
 --- !u!1 &965591069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,9 +1352,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 547306640804816471, guid: 8618edeb432d74d40afb050f4f34c465, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2310159102701177465, guid: 8618edeb432d74d40afb050f4f34c465, type: 3}
       propertyPath: i
       value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310159102701177465, guid: 8618edeb432d74d40afb050f4f34c465, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2310159102701177465, guid: 8618edeb432d74d40afb050f4f34c465, type: 3}
       propertyPath: transition
@@ -1415,6 +1420,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9072322230063385412, guid: 8618edeb432d74d40afb050f4f34c465, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1436,7 +1445,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1375706877}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f97366c6a51256940a58bef2c9bd85e1, type: 3}
   m_Name: 
@@ -1894,7 +1903,6 @@ MonoBehaviour:
   sceneToLoad: 
   quitGame: 1
   delay: 1
-  transition: {fileID: 0}
 --- !u!1 &2110273657
 GameObject:
   m_ObjectHideFlags: 0
