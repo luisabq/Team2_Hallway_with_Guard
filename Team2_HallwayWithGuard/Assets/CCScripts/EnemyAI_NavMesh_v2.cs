@@ -28,6 +28,11 @@ public class UFOController : MonoBehaviour
     public float chaseVolume = 1f;
     public float fadeSpeed = 2f;
 
+    [Header("Chase Music")]
+    public AudioSource chaseVoice;
+    public float chaseVolume2 = 1f;
+    public float fadeSpeed2 = 2f;
+
     private bool chaseMusicStarted = false;
 
     [Header("TP Charge")]
@@ -236,6 +241,7 @@ public class UFOController : MonoBehaviour
         if (!chaseMusicStarted)
         {
             chaseMusic.Play();
+            chaseVoice.Play();
             chaseMusicStarted = true;
         }
     }
@@ -248,6 +254,11 @@ public class UFOController : MonoBehaviour
 
         chaseMusic.volume = Mathf.MoveTowards(
             chaseMusic.volume,
+            targetVolume,
+            fadeSpeed * Time.deltaTime
+        );
+        chaseVoice.volume = Mathf.MoveTowards(
+            chaseVoice.volume,
             targetVolume,
             fadeSpeed * Time.deltaTime
         );
