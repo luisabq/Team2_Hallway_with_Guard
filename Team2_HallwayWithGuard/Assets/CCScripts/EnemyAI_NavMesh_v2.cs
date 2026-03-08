@@ -112,7 +112,7 @@ public class UFOController : MonoBehaviour
         HandleChaseMusic();
 
     }
-
+    
     void Patrol()
     {
         agent.speed = patrolSpeed;
@@ -178,6 +178,7 @@ public class UFOController : MonoBehaviour
 
         // Zap SFX plays immediately
         if (zapSource != null)
+            alienCloud.Play();
             zapSource.Play();
 
         // wait for the charge time before tp
