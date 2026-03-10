@@ -37,7 +37,6 @@ public class UFOController : MonoBehaviour
 
     [Header("TP Charge")]
     public float teleportChargeTime = 0.5f;
-    public ParticleSystem alienCloud;
 
     private NavMeshAgent agent;
     private Transform player;
@@ -112,7 +111,7 @@ public class UFOController : MonoBehaviour
         HandleChaseMusic();
 
     }
-    
+
     void Patrol()
     {
         agent.speed = patrolSpeed;
@@ -170,6 +169,7 @@ public class UFOController : MonoBehaviour
     IEnumerator TeleportSequence()
     {
         if (isTeleporting) yield break;
+
         isTeleporting = true;
 
         // UFO should stop
@@ -178,7 +178,6 @@ public class UFOController : MonoBehaviour
 
         // Zap SFX plays immediately
         if (zapSource != null)
-            alienCloud.Play();
             zapSource.Play();
 
         // wait for the charge time before tp
