@@ -1210,7 +1210,7 @@
     "m_Title": "New Group",
     "m_Position": {
         "x": -911.0,
-        "y": -26.999977111816408
+        "y": -27.0
     }
 }
 
@@ -1686,7 +1686,7 @@
     "m_ObjectId": "41b64898bb7a4e9ca094d7abbb49b2fb",
     "m_Title": "Border Top",
     "m_Position": {
-        "x": -361.0000305175781,
+        "x": -361.0,
         "y": 643.0
     }
 }
@@ -2066,8 +2066,8 @@
     "m_ObjectId": "5e62b3e1154f4396b8996c73faeba599",
     "m_Title": "Border Right",
     "m_Position": {
-        "x": -417.0000305175781,
-        "y": 181.00001525878907
+        "x": -417.0,
+        "y": 181.0
     }
 }
 
@@ -3933,8 +3933,8 @@
     "m_ObjectId": "e43f73d45d014ffeb7ca8a84a76f0e8f",
     "m_Title": "Border Bottom",
     "m_Position": {
-        "x": -659.0000610351563,
-        "y": 1055.0001220703125
+        "x": -659.0,
+        "y": 1055.0
     }
 }
 

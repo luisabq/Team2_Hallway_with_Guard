@@ -22,7 +22,7 @@ public class PauseScreen : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             if (isPaused)
                 Resume();
