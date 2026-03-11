@@ -6,25 +6,22 @@ public class PauseScreen : MonoBehaviour
     public static bool isPaused = false;
 
     public GameObject targetObject;
+    
 
-    [Header("UI Ref")]
+
+    [Header("UI Reference")]
     public GameObject pauseMenuUI;
-    public GameObject hudUI;
 
-    private FPSController playerController;
 
     void Start()
     {
-        playerController = targetObject.GetComponent<FPSController>();
-
-        playerController.enabled = true;
-
+        // Make sure everything starts correctly
+        targetObject.GetComponent<FPSController>().enabled = true;
         pauseMenuUI.SetActive(false);
-        hudUI.SetActive(true);
-
         Time.timeScale = 1f;
         isPaused = false;
 
+        // Lock cursor at start (for FPS-style games)
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -42,49 +39,41 @@ public class PauseScreen : MonoBehaviour
 
     public void Resume()
     {
-        playerController.enabled = true;
-
+        targetObject.GetComponent<FPSController>().enabled = true;
         pauseMenuUI.SetActive(false);
-        hudUI.SetActive(true);
-
         Time.timeScale = 1f;
         isPaused = false;
 
-        AudioListener.pause = false;
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        //gameObject.Find("PlayerController").GetComponent<FPSController>.enabled = true;
+        
     }
 
     void Pause()
     {
-        playerController.enabled = false;
-
+        targetObject.GetComponent<FPSController>().enabled = false;
         pauseMenuUI.SetActive(true);
-        hudUI.SetActive(false);
-
         Time.timeScale = 0f;
         isPaused = true;
 
-        AudioListener.pause = true;
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        // gameObject.Find("PlayerController").GetComponent<FPSController>.enabled = false;
+        
+
     }
 
     public void LoadMenu(string sceneName)
     {
         Time.timeScale = 1f;
         isPaused = false;
-
-        AudioListener.pause = false;
-
         SceneManager.LoadScene(sceneName);
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quitting Game");
+        Debug.Log("Quitting Game...");
         Application.Quit();
     }
 }
