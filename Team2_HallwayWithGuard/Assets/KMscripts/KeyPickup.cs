@@ -6,12 +6,14 @@ public class KeyPickup : MonoBehaviour
     private Inventory inventory;
     public GameObject keyText;
     public bool hasKey = false;
+    public GameObject KeyUI;
 
     private AudioSource audisoSource;
 
     void Start()
     {
-         keyText.SetActive(false);
+        KeyUI.SetActive(false);
+        keyText.SetActive(false);
         audisoSource = GetComponent<AudioSource>();
     }
 
@@ -23,7 +25,7 @@ public class KeyPickup : MonoBehaviour
             inventory = other.GetComponent<Inventory>();
             inventory.AddKey();
             hasKey = true;
-
+            KeyUI.SetActive(true);
             keyText.SetActive(true);
             //Debug.Log(" picked up key ");
 
