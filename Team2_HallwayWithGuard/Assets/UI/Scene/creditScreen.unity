@@ -323,14 +323,14 @@ MonoBehaviour:
   m_text: "\n\nLuisa Brizolim Quesada \u2013 Producer, UI, Environmental Art\nBlave
     Bailey \u2013 Level Design (Area 1)\nNicolas Blanco \u2013 Level Design, Ambient
     Audio\nZachary Medina \u2013 Level Design, UI Art\nZachary Parrett \u2013 Cow
-    Model & Animation\nGarrett Smith \u2013 UFO Model, Barn & Props\nCameron Cruz
-    \u2013 Chase Music & Sound Effects, Player Controller, Stamina + Hay Hiding +
-    Moo Button, Post Processing, Controller Support\nKaylee Moon \u2013 Key Pickup
-    System, Win/Lose Logic\nJames Davie \u2013 Player Controller, UFO AI\nDarrin
-    Williams \u2013 Barn Area Level Design"
+    Model & Animation\nGarrett Smith \u2013 UFO Model, Barn & Env Props, Alien Model,
+    Game Shader System\nCameron Cruz \u2013 Chase Music & Sound Effects, Player Controller,
+    Stamina + Hay Hiding + Moo Button, Post Processing, Controller Support\nKaylee
+    Moon \u2013 Key Pickup System, Win/Lose Logic\nJames Davie \u2013 Player Controller,
+    UFO AI\nDarrin Williams \u2013 Barn Area Level Design"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 26ba7fdecd50a37408602ca82f33e119, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 26ba7fdecd50a37408602ca82f33e119, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -592,8 +592,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "MFO \u2013 Credits"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 26ba7fdecd50a37408602ca82f33e119, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 26ba7fdecd50a37408602ca82f33e119, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
