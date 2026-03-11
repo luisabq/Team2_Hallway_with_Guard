@@ -4,10 +4,12 @@ public class KeyPickup : MonoBehaviour
 {
     private Inventory inventory;
     private AudioSource audioSource;
+    public GameObject keyUI;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        keyUI.SetActive(false);
     }
 
     // if collided with player, do AddKey method in inventory script, destroy the key and add it to inventory
@@ -19,7 +21,7 @@ public class KeyPickup : MonoBehaviour
 
             if (inventory != null)
                 inventory.AddKey();
-
+            keyUI.SetActive(true);
             TopMessageUI.Instance.ShowMessage("You picked up the key!");
 
             if (audioSource != null)
