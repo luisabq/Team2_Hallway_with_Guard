@@ -323,12 +323,12 @@ MonoBehaviour:
   m_text: "\n\nLuisa Brizolim Quesada \u2013 Producer, UI, Environmental Art\nBlave
     Bailey \u2013 Level Design (Area 1)\nNicolas Blanco \u2013 Level Design, Ambient
     Audio\nZachary Medina \u2013 Level Design, UI Art\nZachary Parrett \u2013 Cow
-    Model & Animation\nGarrett Smith \u2013 UFO Model, Barn & Env Props, Alien Model,
-    Game Shader System\nCameron Cruz \u2013 Chase Music & Sound Effects, Player Controller,
-    Stamina + Hay Hiding + Moo Button, Post Processing, Controller Support\nKaylee
-    Moon \u2013 Key Pickup System, Win/Lose Logic\nJames Davie \u2013 Player Controller,
-    UFO AI\nDarrin Williams \u2013 Barn Area Level Design\nJessee Cheremond - Alien
-    Voice"
+    Model & Animation, Key Model\nGarrett Smith \u2013 UFO Model, Barn & Env Props,
+    Alien Model, Game Shader System\nCameron Cruz \u2013 Chase Music & Sound Effects,
+    Player Controller, Stamina + Hay Hiding + Moo Button, Post Processing, Controller
+    Support\nKaylee Moon \u2013 Key Pickup System, Win/Lose Logic\nJames Davie \u2013
+    Player Controller, UFO AI\nDarrin Williams \u2013 Barn Area Level Design\nJessee
+    Cheremond - Alien Voice"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26ba7fdecd50a37408602ca82f33e119, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 26ba7fdecd50a37408602ca82f33e119, type: 2}
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.95
+  m_fontSize: 18.2
   m_fontSizeBase: 16.6
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "MFO \u2013 Credits"
+  m_text: "MOO-F-O \u2013 Credits"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26ba7fdecd50a37408602ca82f33e119, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 26ba7fdecd50a37408602ca82f33e119, type: 2}
