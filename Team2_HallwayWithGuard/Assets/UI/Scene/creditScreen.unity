@@ -862,7 +862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 499231523879212042, guid: 8618edeb432d74d40afb050f4f34c465, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2310159102701177465, guid: 8618edeb432d74d40afb050f4f34c465, type: 3}
       propertyPath: transition
