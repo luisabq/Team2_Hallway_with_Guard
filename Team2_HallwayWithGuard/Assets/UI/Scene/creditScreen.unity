@@ -297,8 +297,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 3.0500183}
-  m_SizeDelta: {x: -80, y: -131.90005}
+  m_AnchoredPosition: {x: 0, y: -0.20498657}
+  m_SizeDelta: {x: -80, y: -138.41003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &410536478
 MonoBehaviour:
@@ -327,7 +327,8 @@ MonoBehaviour:
     Game Shader System\nCameron Cruz \u2013 Chase Music & Sound Effects, Player Controller,
     Stamina + Hay Hiding + Moo Button, Post Processing, Controller Support\nKaylee
     Moon \u2013 Key Pickup System, Win/Lose Logic\nJames Davie \u2013 Player Controller,
-    UFO AI\nDarrin Williams \u2013 Barn Area Level Design"
+    UFO AI\nDarrin Williams \u2013 Barn Area Level Design\nJessee Cheremond - Alien
+    Voice"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26ba7fdecd50a37408602ca82f33e119, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 26ba7fdecd50a37408602ca82f33e119, type: 2}
@@ -861,7 +862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 499231523879212042, guid: 8618edeb432d74d40afb050f4f34c465, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2310159102701177465, guid: 8618edeb432d74d40afb050f4f34c465, type: 3}
       propertyPath: transition
